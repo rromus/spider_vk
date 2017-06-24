@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <h3>Settings</h3>
+
+  {% for sett in settings %}
+    <p>Фильтры:</p>
+    <p>{{ sett.filters }} </p>
+
+    <br> 
+    <p>Урлы:</p>
+    <p>{{ sett.urls }} </p>
+    <br> 
+    <p>{{ sett.runs }} </p>
+    <br> 
+    <p>{{ sett.run_last_time }} </p>
+    <br> 
+    <p>{{ sett.run_delay}} </p>
+    <br> 
+    <p>{{ sett.status}} </p>
+
+
+  {% endfor %}
+
+
+{% endblock content %}
