@@ -1,11 +1,16 @@
 {% load staticfiles %}
 <html>
-        <head>
+    <head>
             <title>Spider for VK</title>
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-            <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+            
+            <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
             <link rel="stylesheet" href="{% static 'css/board.css' %}">
+
+            <link rel="stylesheet" href="{% static 'css/index.css' %}">
+            <link rel="stylesheet" href="{% static 'css/common.css' %}">
+
     </head>
         
     <body>
@@ -27,8 +32,16 @@
            -->
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/settings">Settings</a></li>
             <li><a href="/admin">Admin</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li>
+              {% if user.username %}
+                <a href="/logout/">{{user.username}} - Logout</a>
+              {% else %}
+                <a href="/login/">Login</a>
+              {% endif %}
+            </li>
+
           </ul>
         </div>
       </div>

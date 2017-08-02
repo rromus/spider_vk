@@ -1,0 +1,78 @@
+{% extends 'spider/base.html' %}
+
+{% block content %}
+
+Текущий фильтр: "{{ filter }}".
+(Постов всего: {{ all_count_post }}, отображено: {{ current_count_post}})
+<br>
+
+Задел на будущее:
+1. Вывод за сутки, неделю, все время.
+2. Надо ли удалять посты из базы, с большим сроком? Т.е. если пост написан месяц назад, смысл в нем? Это при условии лагов в базе данных.
+3. У каждого узера будет возможность добавлять свои url-ы(кол-во которых ограничено), для парсинга с ВК
+4. Добавить фильтр по городам
+<br>
+
+{% for post in posts %}
+<!-- <div class="bp_post clear_fix " > -->
+  <!-- <div class="page_block"> -->
+  <div class="page_block">
+    <!-- <div class="bp_info"> -->
+    <div >
+      
+      <div class="fl_l"> 
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ post.id }}" /> 
+            <input type="hidden" name="action" value="hide_post" /> 
+            <input type="submit" class="flat_button" value = "Скрыть">
+        </form>
+      </div>
+
+      <div class="fl_r"> 
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ post.author.user_id}}" /> 
+            <input type="hidden" name="action" value="author_ignor" /> 
+            <input type="submit" class="flat_button" value = "Автор игнор">
+
+        </form>
+      </div>
+      
+      <div class="bp_author_wrap">
+        
+        <a class="bp_author" href="{{ post.author.url }}">{{ post.author }}</a>
+        <a class="bp_city" >{{ post.author.city }}</a>
+        <a class="bp_date" href="{{ post.post_url }}">{{ post.date }}</a>
+        <a class="bp_url" href="{{ post.wall_url }}">{{ post.wall_url }}</a>
+
+        <!-- <span class="bp_topic"></span> -->
+      </div>
+
+      <div class="bp_content">
+          <div class="bp_text">{{ post.text|linebreaksbr }}</div>
+      </div>
+        <!-- <div><p><a href="{{ post.url }}">{{ post.url }}</a></p></div> -->
+
+<!-- <button class="flat_button secondary button_light" onclick="FeedNotifications.hide(this, 45, 'efe9fa0b63920c7d46', event)">Скрыть</button> -->
+
+
+        <!-- <div class="bp_edited_by"><a href="">Скрыть</a></div> -->
+        <!-- <div class="bp_bottom clear_fix">
+            <a href="#" class="like_wrap _like_wrap " onclick="return Wall.likeIt(this, '-50442428topic_comment2', '', event);" onmouseover="Wall.likesShow(this, '-50442428topic_comment2')">
+            </a>
+        </div>
+ -->        
+    </div>
+  </div>
+
+
+    <br>
+
+<!-- </div> -->
+
+
+{% endfor %}
+<!-- {% include "spider/about.html" %} -->
+
+{% endblock content %}

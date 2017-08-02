@@ -1,0 +1,38 @@
+{% extends 'spider/base.html' %}
+
+{% block content %}
+
+<!-- {{ filters }} -->
+
+
+<div id="side_bar" class="fl_l ">
+    <div class="side_bar_inner" style="position: fixed; margin-left: 0px; top: 0px;">
+
+		<ol>
+			{% for filter in filters %}
+			  <li class="">
+				<a href="{% url 'filter_user' filter_id=filter.pk %}" class="left_row">
+		    		<span class="left_fixer">
+<!-- 		      		<span class="left_count_wrap fl_r left_void">
+		      				<span class="inl_bl left_count_sign">
+		      					0
+		      				</span>
+		      			</span>
+ -->		      		
+ 						<span class="left_icon fl_l"></span>
+		      			<span class="left_label inl_bl">{{filter}}</span>
+		    		</span>
+				</a>
+			  </li>
+			{% endfor %}
+		</ol>
+	</div>
+</div>
+
+
+<!-- <div class="more_div l_main">Черта</div> -->
+
+<!-- {% include "spider/about.html" %} -->
+
+{% endblock content %}
+

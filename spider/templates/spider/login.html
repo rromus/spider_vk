@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}Login{% endblock %}
+{% block content %}
+    {% if errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+
+<div id="index_rcolumn" class="index_rcolumn">
+  
+  
+
+
+
+    <div id="login" class="page_block index_login">
+        <form method="post" name="login" id="index_login_form" action="/login/">
+            {% csrf_token %}
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
+            <input type="text" class="big_text" id="username" name="username" value="" placeholder="Username">
+            <input type="password" class="big_text" name="password" id="password" value="" placeholder="Password" onkeyup="toggle('index_expire', !!this.value);toggle('index_forgot', !this.value)">
+            <button id="index_login_button" class="index_login_button flat_button button_big_text">Login</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
